@@ -160,35 +160,13 @@ body {
 
 .c-robot__body {
   fill: var(--global-color-front);
-  animation-name: robotHover;
-  animation-duration: .75s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-play-state: var(--robot-animation-play-state);
 }
 
 .c-robot__shadow {
   fill: #000;
   opacity: .1;
-  animation-name: shadowPulse;
-  animation-duration: .75s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
   transform-origin: 50% 100%;
-  animation-play-state: var(--robot-animation-play-state);
 }
-
-.c-pause:checked + .c-robot{
-  --robot-animation-play-state: paused;
-}
-
-/* zelfde manier als hierboven, maar onderste methode werkt ook als we bv. checkbox onder de svg zetten*/
-body:has(.c-pause:checked) .c-robot{
-  --robot-animation-play-state: paused;
-}
-
 
 /*
     Component: Controls
