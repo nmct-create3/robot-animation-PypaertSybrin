@@ -15,6 +15,23 @@
   --global-html-color: var(--global-color-front);
   --global-html-backgroundColor: var(--global-color-back);
   --global-selection-backgroundColor: var(--global-color-front);
+
+  --robot-animation-play-state: running;
+}
+
+@keyframes robotHover{
+  0% {
+    transform: translateY(2.5%);
+  }
+  100% {
+    transform: translateY(-2.5%);
+  }
+}
+
+@keyframes shadowPulse{
+  100% {
+    transform: scale(0.75);
+  }
 }
 
 /*------------------------------------*\
@@ -34,6 +51,7 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--global-html-backgroundColor);
 }
 
 *,
@@ -43,6 +61,10 @@ html {
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*
@@ -132,10 +154,39 @@ body {
     Component: Robot
 */
 
-.c-robot {
+.c-robot{
+  max-width: 300px;
+}
+
+.c-robot__body {
+  fill: var(--global-color-front);
+  animation-name: robotHover;
+  animation-duration: .75s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: var(--robot-animation-play-state);
 }
 
 .c-robot__shadow {
+  fill: #000;
+  opacity: .1;
+  animation-name: shadowPulse;
+  animation-duration: .75s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transform-origin: 50% 100%;
+  animation-play-state: var(--robot-animation-play-state);
+}
+
+.c-pause:checked + .c-robot{
+  --robot-animation-play-state: paused;
+}
+
+/* zelfde manier als hierboven, maar onderste methode werkt ook als we bv. checkbox onder de svg zetten*/
+body:has(.c-pause:checked) .c-robot{
+  --robot-animation-play-state: paused;
 }
 
 
